@@ -85,9 +85,7 @@ if asesor and tienda and cargo:
         for k, v in cumplimiento.items():
             st.write(f"**{k}:** {v:.2f}%")
 
-        # Lógica de comisión real: SIMPLIFICADA para mostrar el mecanismo
         def obtener_variable(indicador, porc):
-            # Esta función debe adaptarse con tus valores reales por tipo/cargo
             if porc >= 120:
                 return 0.02
             elif porc >= 110:
@@ -101,10 +99,28 @@ if asesor and tienda and cargo:
             else:
                 return 0.0
 
+        def obtener_fijo(indicador, porc):
+            if porc >= 120:
+                return 198
+            elif porc >= 110:
+                return 176
+            elif porc >= 100:
+                return 154
+            elif porc >= 90:
+                return 132
+            elif porc >= 85:
+                return 110
+            else:
+                return 0
+
         comisiones = {}
         for indicador, porc in cumplimiento.items():
-            var = obtener_variable(indicador, porc)
-            comisiones[indicador] = venta_total * var
+            variable = obtener_variable(indicador, porc) * venta_total
+            fijo = obtener_fijo(indicador, porc)
+            if cargo == "Asesor" and marca != "Vélez" and indicador in ["Fidelización", "TC"]:
+                comisiones[indicador] = max(variable, fijo)
+            else:
+                comisiones[indicador] = variable
 
         st.markdown("---")
         st.subheader("🧾 Comisión por Indicador")
