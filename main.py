@@ -2,7 +2,6 @@ import streamlit as st
 
 # Configuración de la página
 st.set_page_config(page_title="Simulador de Comisiones", layout="centered")
-
 st.markdown("<h1 style='text-align: center; color: #1f77b4;'>Simulador de Comisiones Dinegma</h1>", unsafe_allow_html=True)
 st.markdown("Este simulador te ayudará a calcular tu comisión según tus indicadores alcanzados. 🧮")
 
@@ -17,31 +16,17 @@ tiendas_tipo = {
     "Hurley Oakland": "A",
     "Nava Oakland": "A",
     "Nava Videre": "A",
-    "Vélez Oakland 1": "A",
-    "Vélez Oakland 2": "A",
-    "Vélez Miraflores": "A",
-    "Vélez Multiplaza": "A",
     "Hurley Naranjo": "B",
     "Hurley Antigua": "B",
     "Hurley Escuintla": "B",
     "Hurley Multiplaza": "B",
-    "Nava Portales": "B",
-    "Vélez Naranjo": "B",
-    "Vélez Portales": "B",
-    "Vélez Chimaltenango": "B",
-    "Vélez Pradera Xela": "B",
-    "Vélez Interplaza Xela": "B",
-    "Vélez Kiosco Miraflores": "Kiosco",
-    "Vélez Kiosco Oakland": "Kiosco",
-    "Vélez Kiosco Decima": "Kiosco",
-    "Vélez Kiosco Gran Vía": "Kiosco",
-    "Vélez Kiosco Galerias": "Kiosco"
+    "Nava Portales": "B"
 }
 
 # Selección de tienda
 tienda = st.selectbox("Selecciona tu tienda", list(tiendas_tipo.keys()))
 tipo_tienda = tiendas_tipo.get(tienda, "No clasificada")
-marca = "Vélez" if "Vélez" in tienda else "Hurley/Nava"
+marca = "Hurley/Nava"
 
 # Mostrar datos básicos
 if asesor and tienda and cargo:
@@ -59,13 +44,11 @@ if asesor and tienda and cargo:
         meta_ppto = st.number_input("Meta de PPTO (Q)", min_value=0.0, format="%.2f")
         meta_axf = st.number_input("Meta de AxF", min_value=0.0, format="%.2f")
         meta_vxf = st.number_input("Meta de VxF (Q)", min_value=0.0, format="%.2f")
-        meta_tc = st.number_input("Meta de TC (%)", min_value=0.0, format="%.2f")
-        meta_fidelizados = facturas_realizadas if marca != "Vélez" else st.number_input("Meta de Clientes Fidelizados", min_value=0)
+        meta_fidelizados = facturas_realizadas
     with col2:
         logro_ppto = st.number_input("Logro de PPTO (Q)", min_value=0.0, format="%.2f")
         logro_axf = st.number_input("Logro de AxF", min_value=0.0, format="%.2f")
         logro_vxf = st.number_input("Logro de VxF (Q)", min_value=0.0, format="%.2f")
-        logro_tc = st.number_input("Logro de TC (%)", min_value=0.0, format="%.2f")
         clientes_fidelizados = st.number_input("Clientes Fidelizados", min_value=0)
 
     if st.button("Calcular Comisión"):
@@ -76,7 +59,6 @@ if asesor and tienda and cargo:
             "PPTO": calcular_cumplimiento(meta_ppto, logro_ppto),
             "AxF": calcular_cumplimiento(meta_axf, logro_axf),
             "VxF": calcular_cumplimiento(meta_vxf, logro_vxf),
-            "TC": calcular_cumplimiento(meta_tc, logro_tc),
             "Fidelización": calcular_cumplimiento(meta_fidelizados, clientes_fidelizados)
         }
 
@@ -85,42 +67,62 @@ if asesor and tienda and cargo:
         for k, v in cumplimiento.items():
             st.write(f"**{k}:** {v:.2f}%")
 
-        def obtener_variable(indicador, porc):
-            if porc >= 120:
-                return 0.02
-            elif porc >= 110:
-                return 0.017
-            elif porc >= 100:
-                return 0.015
-            elif porc >= 90:
-                return 0.012
-            elif porc >= 85:
-                return 0.01
-            else:
-                return 0.0
+        # Tabla de comisiones por variable
+        tabla_variables = {
+            "Administrador": {
+                "A": {"PPTO": [0.01, 0.012, 0.015, 0.017, 0.02],
+                      "AxF": [0.01, 0.012, 0.015, 0.017, 0.02],
+                      "VxF": [0.01, 0.012, 0.015, 0.017, 0.02],
+                      "Fidelización": [0.01, 0.012, 0.015, 0.017, 0.02]},
+                "B": {"PPTO": [0.008, 0.01, 0.012, 0.014, 0.016],
+                      "AxF": [0.008, 0.01, 0.012, 0.014, 0.016],
+                      "VxF": [0.008, 0.01, 0.012, 0.014, 0.016],
+                      "Fidelización": [0.008, 0.01, 0.012, 0.014, 0.016]}
+            },
+            "Alterno": {
+                "A": {"PPTO": [0.006, 0.008, 0.01, 0.012, 0.014],
+                      "AxF": [0.006, 0.008, 0.01, 0.012, 0.014],
+                      "VxF": [0.006, 0.008, 0.01, 0.012, 0.014],
+                      "Fidelización": [0.006, 0.008, 0.01, 0.012, 0.014]},
+                "B": {"PPTO": [0.005, 0.007, 0.009, 0.011, 0.013],
+                      "AxF": [0.005, 0.007, 0.009, 0.011, 0.013],
+                      "VxF": [0.005, 0.007, 0.009, 0.011, 0.013],
+                      "Fidelización": [0.005, 0.007, 0.009, 0.011, 0.013]}
+            },
+            "Asesor": {
+                "A": {"PPTO": [0.005, 0.007, 0.009, 0.011, 0.013],
+                      "AxF": [0.005, 0.007, 0.009, 0.011, 0.013],
+                      "VxF": [0.005, 0.007, 0.009, 0.011, 0.013],
+                      "Fidelización": [0.005, 0.007, 0.009, 0.011, 0.013]},
+                "B": {"PPTO": [0.004, 0.006, 0.008, 0.01, 0.012],
+                      "AxF": [0.004, 0.006, 0.008, 0.01, 0.012],
+                      "VxF": [0.004, 0.006, 0.008, 0.01, 0.012],
+                      "Fidelización": [0.004, 0.006, 0.008, 0.01, 0.012]}
+            }
+        }
 
-        def obtener_fijo(indicador, porc):
-            if porc >= 120:
-                return 198
-            elif porc >= 110:
-                return 176
-            elif porc >= 100:
-                return 154
-            elif porc >= 90:
-                return 132
-            elif porc >= 85:
-                return 110
-            else:
+        def rango_index(cumplimiento):
+            if cumplimiento >= 120:
+                return 4
+            elif cumplimiento >= 110:
+                return 3
+            elif cumplimiento >= 100:
+                return 2
+            elif cumplimiento >= 90:
+                return 1
+            elif cumplimiento >= 85:
                 return 0
+            else:
+                return -1
 
         comisiones = {}
         for indicador, porc in cumplimiento.items():
-            variable = obtener_variable(indicador, porc) * venta_total
-            fijo = obtener_fijo(indicador, porc)
-            if cargo == "Asesor" and marca != "Vélez" and indicador in ["Fidelización", "TC"]:
-                comisiones[indicador] = max(variable, fijo)
+            idx = rango_index(porc)
+            if idx >= 0:
+                porcentaje_variable = tabla_variables[cargo][tipo_tienda][indicador][idx]
+                comisiones[indicador] = venta_total * porcentaje_variable
             else:
-                comisiones[indicador] = variable
+                comisiones[indicador] = 0.0
 
         st.markdown("---")
         st.subheader("🧾 Comisión por Indicador")
