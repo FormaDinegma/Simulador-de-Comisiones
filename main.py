@@ -11,21 +11,27 @@ comisiones_admins_A = {
         {"rango": (110, 119.99), "variable": 0.0077, "fijo": 1273},
         {"rango": (120, 999), "variable": 0.0080, "fijo": 1340},
     ],
-    "VxF": [{"rango": (85, 89.99), "variable": 0.0008, "fijo": 143},
-            {"rango": (90, 99.99), "variable": 0.0009, "fijo": 165},
-            {"rango": (100, 109.99), "variable": 0.0012, "fijo": 187},
-            {"rango": (110, 119.99), "variable": 0.0013, "fijo": 209},
-            {"rango": (120, 999), "variable": 0.0013, "fijo": 220}],
-    "AxF": [{"rango": (85, 89.99), "variable": 0.0008, "fijo": 143},
-            {"rango": (90, 99.99), "variable": 0.0009, "fijo": 165},
-            {"rango": (100, 109.99), "variable": 0.0012, "fijo": 187},
-            {"rango": (110, 119.99), "variable": 0.0013, "fijo": 209},
-            {"rango": (120, 999), "variable": 0.0013, "fijo": 220}],
-    "Fidelizacion": [{"rango": (85, 89.99), "variable": 0.0008, "fijo": 143},
-                     {"rango": (90, 99.99), "variable": 0.0009, "fijo": 165},
-                     {"rango": (100, 109.99), "variable": 0.0012, "fijo": 187},
-                     {"rango": (110, 119.99), "variable": 0.0013, "fijo": 209},
-                     {"rango": (120, 999), "variable": 0.0013, "fijo": 220}]
+    "VxF": [
+        {"rango": (85, 89.99), "variable": 0.0008, "fijo": 143},
+        {"rango": (90, 99.99), "variable": 0.0009, "fijo": 165},
+        {"rango": (100, 109.99), "variable": 0.0012, "fijo": 187},
+        {"rango": (110, 119.99), "variable": 0.0013, "fijo": 209},
+        {"rango": (120, 999), "variable": 0.0013, "fijo": 220},
+    ],
+    "AxF": [
+        {"rango": (85, 89.99), "variable": 0.0008, "fijo": 143},
+        {"rango": (90, 99.99), "variable": 0.0009, "fijo": 165},
+        {"rango": (100, 109.99), "variable": 0.0012, "fijo": 187},
+        {"rango": (110, 119.99), "variable": 0.0013, "fijo": 209},
+        {"rango": (120, 999), "variable": 0.0013, "fijo": 220},
+    ],
+    "Fidelizacion": [
+        {"rango": (85, 89.99), "variable": 0.0008, "fijo": 143},
+        {"rango": (90, 99.99), "variable": 0.0009, "fijo": 165},
+        {"rango": (100, 109.99), "variable": 0.0012, "fijo": 187},
+        {"rango": (110, 119.99), "variable": 0.0013, "fijo": 209},
+        {"rango": (120, 999), "variable": 0.0013, "fijo": 220},
+    ],
 }
 
 # ADMINISTRADORES - TIENDA B
@@ -37,21 +43,27 @@ comisiones_admins_B = {
         {"rango": (110, 119.99), "variable": 0.0084, "fijo": 1139},
         {"rango": (120, 999), "variable": 0.0087, "fijo": 1206},
     ],
-    "VxF": [{"rango": (85, 89.99), "variable": 0.0011, "fijo": 121},
-            {"rango": (90, 99.99), "variable": 0.0012, "fijo": 143},
-            {"rango": (100, 109.99), "variable": 0.0013, "fijo": 165},
-            {"rango": (110, 119.99), "variable": 0.0014, "fijo": 187},
-            {"rango": (120, 999), "variable": 0.0014, "fijo": 198}],
-    "AxF": [{"rango": (85, 89.99), "variable": 0.0011, "fijo": 121},
-            {"rango": (90, 99.99), "variable": 0.0012, "fijo": 143},
-            {"rango": (100, 109.99), "variable": 0.0013, "fijo": 165},
-            {"rango": (110, 119.99), "variable": 0.0014, "fijo": 187},
-            {"rango": (120, 999), "variable": 0.0014, "fijo": 198}],
-    "Fidelizacion": [{"rango": (85, 89.99), "variable": 0.0011, "fijo": 121},
-                     {"rango": (90, 99.99), "variable": 0.0012, "fijo": 143},
-                     {"rango": (100, 109.99), "variable": 0.0013, "fijo": 165},
-                     {"rango": (110, 119.99), "variable": 0.0014, "fijo": 187},
-                     {"rango": (120, 999), "variable": 0.0014, "fijo": 198}]
+    "VxF": [
+        {"rango": (85, 89.99), "variable": 0.0011, "fijo": 121},
+        {"rango": (90, 99.99), "variable": 0.0012, "fijo": 143},
+        {"rango": (100, 109.99), "variable": 0.0013, "fijo": 165},
+        {"rango": (110, 119.99), "variable": 0.0014, "fijo": 187},
+        {"rango": (120, 999), "variable": 0.0014, "fijo": 198},
+    ],
+    "AxF": [
+        {"rango": (85, 89.99), "variable": 0.0011, "fijo": 121},
+        {"rango": (90, 99.99), "variable": 0.0012, "fijo": 143},
+        {"rango": (100, 109.99), "variable": 0.0013, "fijo": 165},
+        {"rango": (110, 119.99), "variable": 0.0014, "fijo": 187},
+        {"rango": (120, 999), "variable": 0.0014, "fijo": 198},
+    ],
+    "Fidelizacion": [
+        {"rango": (85, 89.99), "variable": 0.0011, "fijo": 121},
+        {"rango": (90, 99.99), "variable": 0.0012, "fijo": 143},
+        {"rango": (100, 109.99), "variable": 0.0013, "fijo": 165},
+        {"rango": (110, 119.99), "variable": 0.0014, "fijo": 187},
+        {"rango": (120, 999), "variable": 0.0014, "fijo": 198},
+    ],
 }
 
 # ASESORES - TIENDA A
@@ -63,21 +75,27 @@ comisiones_asesores_A = {
         {"rango": (110, 119.99), "variable": 0.0181, "fijo": 938},
         {"rango": (120, 999), "variable": 0.0188, "fijo": 1072},
     ],
-    "VxF": [{"rango": (85, 89.99), "variable": 0.0019, "fijo": 88},
-            {"rango": (90, 99.99), "variable": 0.0023, "fijo": 110},
-            {"rango": (100, 109.99), "variable": 0.0029, "fijo": 132},
-            {"rango": (110, 119.99), "variable": 0.0030, "fijo": 154},
-            {"rango": (120, 999), "variable": 0.0031, "fijo": 176}],
-    "AxF": [{"rango": (85, 89.99), "variable": 0.0019, "fijo": 88},
-            {"rango": (90, 99.99), "variable": 0.0023, "fijo": 110},
-            {"rango": (100, 109.99), "variable": 0.0029, "fijo": 132},
-            {"rango": (110, 119.99), "variable": 0.0030, "fijo": 154},
-            {"rango": (120, 999), "variable": 0.0031, "fijo": 176}],
-    "Fidelizacion": [{"rango": (85, 89.99), "variable": 0.0019, "fijo": 88},
-                     {"rango": (90, 99.99), "variable": 0.0023, "fijo": 110},
-                     {"rango": (100, 109.99), "variable": 0.0029, "fijo": 132},
-                     {"rango": (110, 119.99), "variable": 0.0030, "fijo": 154},
-                     {"rango": (120, 999), "variable": 0.0031, "fijo": 176}]
+    "VxF": [
+        {"rango": (85, 89.99), "variable": 0.0019, "fijo": 88},
+        {"rango": (90, 99.99), "variable": 0.0023, "fijo": 110},
+        {"rango": (100, 109.99), "variable": 0.0029, "fijo": 132},
+        {"rango": (110, 119.99), "variable": 0.0030, "fijo": 154},
+        {"rango": (120, 999), "variable": 0.0031, "fijo": 176},
+    ],
+    "AxF": [
+        {"rango": (85, 89.99), "variable": 0.0019, "fijo": 88},
+        {"rango": (90, 99.99), "variable": 0.0023, "fijo": 110},
+        {"rango": (100, 109.99), "variable": 0.0029, "fijo": 132},
+        {"rango": (110, 119.99), "variable": 0.0030, "fijo": 154},
+        {"rango": (120, 999), "variable": 0.0031, "fijo": 176},
+    ],
+    "Fidelizacion": [
+        {"rango": (85, 89.99), "variable": 0.0019, "fijo": 88},
+        {"rango": (90, 99.99), "variable": 0.0023, "fijo": 110},
+        {"rango": (100, 109.99), "variable": 0.0029, "fijo": 132},
+        {"rango": (110, 119.99), "variable": 0.0030, "fijo": 154},
+        {"rango": (120, 999), "variable": 0.0031, "fijo": 176},
+    ],
 }
 
 # ASESORES - TIENDA B
@@ -89,24 +107,28 @@ comisiones_asesores_B = {
         {"rango": (110, 119.99), "variable": 0.0188, "fijo": 871},
         {"rango": (120, 999), "variable": 0.0194, "fijo": 1005},
     ],
-    "VxF": [{"rango": (85, 89.99), "variable": 0.0020, "fijo": 77},
-            {"rango": (90, 99.99), "variable": 0.0024, "fijo": 99},
-            {"rango": (100, 109.99), "variable": 0.0030, "fijo": 121},
-            {"rango": (110, 119.99), "variable": 0.0031, "fijo": 143},
-            {"rango": (120, 999), "variable": 0.0032, "fijo": 165}],
-    "AxF": [{"rango": (85, 89.99), "variable": 0.0020, "fijo": 77},
-            {"rango": (90, 99.99), "variable": 0.0024, "fijo": 99},
-            {"rango": (100, 109.99), "variable": 0.0030, "fijo": 121},
-            {"rango": (110, 119.99), "variable": 0.0031, "fijo": 143},
-            {"rango": (120, 999), "variable": 0.0032, "fijo": 165}],
-    "Fidelizacion": [{"rango": (85, 89.99), "variable": 0.0020, "fijo": 77},
-                     {"rango": (90, 99.99), "variable": 0.0024, "fijo": 99},
-                     {"rango": (100, 109.99), "variable": 0.0030, "fijo": 121},
-                     {"rango": (110, 119.99), "variable": 0.0031, "fijo": 143},
-                     {"rango": (120, 999), "variable": 0.0032, "fijo": 165}]
+    "VxF": [
+        {"rango": (85, 89.99), "variable": 0.0020, "fijo": 77},
+        {"rango": (90, 99.99), "variable": 0.0024, "fijo": 99},
+        {"rango": (100, 109.99), "variable": 0.0030, "fijo": 121},
+        {"rango": (110, 119.99), "variable": 0.0031, "fijo": 143},
+        {"rango": (120, 999), "variable": 0.0032, "fijo": 165},
+    ],
+    "AxF": [
+        {"rango": (85, 89.99), "variable": 0.0020, "fijo": 77},
+        {"rango": (90, 99.99), "variable": 0.0024, "fijo": 99},
+        {"rango": (100, 109.99), "variable": 0.0030, "fijo": 121},
+        {"rango": (110, 119.99), "variable": 0.0031, "fijo": 143},
+        {"rango": (120, 999), "variable": 0.0032, "fijo": 165},
+    ],
+    "Fidelizacion": [
+        {"rango": (85, 89.99), "variable": 0.0020, "fijo": 77},
+        {"rango": (90, 99.99), "variable": 0.0024, "fijo": 99},
+        {"rango": (100, 109.99), "variable": 0.0030, "fijo": 121},
+        {"rango": (110, 119.99), "variable": 0.0031, "fijo": 143},
+        {"rango": (120, 999), "variable": 0.0032, "fijo": 165},
+    ],
 }
-
-
 # --- FUNCIÓN PARA CALCULAR COMISIÓN ---
 def calcular_comision(tabla, indicador, meta, logro, venta_total):
     if meta == 0:
