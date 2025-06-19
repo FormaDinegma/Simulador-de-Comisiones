@@ -1,137 +1,161 @@
 import streamlit as st
 
-# Configuración de la página
-st.set_page_config(page_title="Simulador de Comisiones", layout="centered")
-st.markdown("<h1 style='text-align: center; color: #1f77b4;'>Simulador de Comisiones Dinegma</h1>", unsafe_allow_html=True)
-st.markdown("Este simulador te ayudará a calcular tu comisión según tus indicadores alcanzados. 🧮")
+# --- TABLAS DE COMISIONES ---
 
-# Nombre del asesor
-asesor = st.text_input("Nombre del asesor o colaborador")
-
-# Cargo
-cargo = st.selectbox("Selecciona tu cargo", ["Asesor", "Alterno", "Administrador"])
-
-# Lista de tiendas con clasificación
-tiendas_tipo = {
-    "Hurley Oakland": "A",
-    "Nava Oakland": "A",
-    "Nava Videre": "A",
-    "Hurley Naranjo": "B",
-    "Hurley Antigua": "B",
-    "Hurley Escuintla": "B",
-    "Hurley Multiplaza": "B",
-    "Nava Portales": "B"
+# ADMINISTRADORES - TIENDA A
+comisiones_admins_A = {
+    "PPTO": [
+        {"rango": (85, 89.99), "variable": 0.0047, "fijo": 871},
+        {"rango": (90, 99.99), "variable": 0.0054, "fijo": 1005},
+        {"rango": (100, 109.99), "variable": 0.0074, "fijo": 1139},
+        {"rango": (110, 119.99), "variable": 0.0077, "fijo": 1273},
+        {"rango": (120, 999), "variable": 0.0080, "fijo": 1340},
+    ],
+    "VxF": [{"rango": (85, 89.99), "variable": 0.0008, "fijo": 143},
+            {"rango": (90, 99.99), "variable": 0.0009, "fijo": 165},
+            {"rango": (100, 109.99), "variable": 0.0012, "fijo": 187},
+            {"rango": (110, 119.99), "variable": 0.0013, "fijo": 209},
+            {"rango": (120, 999), "variable": 0.0013, "fijo": 220}],
+    "AxF": [{"rango": (85, 89.99), "variable": 0.0008, "fijo": 143},
+            {"rango": (90, 99.99), "variable": 0.0009, "fijo": 165},
+            {"rango": (100, 109.99), "variable": 0.0012, "fijo": 187},
+            {"rango": (110, 119.99), "variable": 0.0013, "fijo": 209},
+            {"rango": (120, 999), "variable": 0.0013, "fijo": 220}],
+    "Fidelizacion": [{"rango": (85, 89.99), "variable": 0.0008, "fijo": 143},
+                     {"rango": (90, 99.99), "variable": 0.0009, "fijo": 165},
+                     {"rango": (100, 109.99), "variable": 0.0012, "fijo": 187},
+                     {"rango": (110, 119.99), "variable": 0.0013, "fijo": 209},
+                     {"rango": (120, 999), "variable": 0.0013, "fijo": 220}]
 }
 
-# Selección de tienda
-tienda = st.selectbox("Selecciona tu tienda", list(tiendas_tipo.keys()))
-tipo_tienda = tiendas_tipo.get(tienda, "No clasificada")
-marca = "Hurley/Nava"
+# ADMINISTRADORES - TIENDA B
+comisiones_admins_B = {
+    "PPTO": [
+        {"rango": (85, 89.99), "variable": 0.0067, "fijo": 737},
+        {"rango": (90, 99.99), "variable": 0.0074, "fijo": 871},
+        {"rango": (100, 109.99), "variable": 0.0080, "fijo": 1005},
+        {"rango": (110, 119.99), "variable": 0.0084, "fijo": 1139},
+        {"rango": (120, 999), "variable": 0.0087, "fijo": 1206},
+    ],
+    "VxF": [{"rango": (85, 89.99), "variable": 0.0011, "fijo": 121},
+            {"rango": (90, 99.99), "variable": 0.0012, "fijo": 143},
+            {"rango": (100, 109.99), "variable": 0.0013, "fijo": 165},
+            {"rango": (110, 119.99), "variable": 0.0014, "fijo": 187},
+            {"rango": (120, 999), "variable": 0.0014, "fijo": 198}],
+    "AxF": [{"rango": (85, 89.99), "variable": 0.0011, "fijo": 121},
+            {"rango": (90, 99.99), "variable": 0.0012, "fijo": 143},
+            {"rango": (100, 109.99), "variable": 0.0013, "fijo": 165},
+            {"rango": (110, 119.99), "variable": 0.0014, "fijo": 187},
+            {"rango": (120, 999), "variable": 0.0014, "fijo": 198}],
+    "Fidelizacion": [{"rango": (85, 89.99), "variable": 0.0011, "fijo": 121},
+                     {"rango": (90, 99.99), "variable": 0.0012, "fijo": 143},
+                     {"rango": (100, 109.99), "variable": 0.0013, "fijo": 165},
+                     {"rango": (110, 119.99), "variable": 0.0014, "fijo": 187},
+                     {"rango": (120, 999), "variable": 0.0014, "fijo": 198}]
+}
 
-# Mostrar datos básicos
-if asesor and tienda and cargo:
-    st.success(f"🧑‍💼 **{asesor}** - Cargo: **{cargo}** - Tienda: **{tienda}**")
-    st.info(f"📌 Esta tienda es clasificada como: **Tipo {tipo_tienda}**")
+# ASESORES - TIENDA A
+comisiones_asesores_A = {
+    "PPTO": [
+        {"rango": (85, 89.99), "variable": 0.0114, "fijo": 536},
+        {"rango": (90, 99.99), "variable": 0.0141, "fijo": 670},
+        {"rango": (100, 109.99), "variable": 0.0174, "fijo": 804},
+        {"rango": (110, 119.99), "variable": 0.0181, "fijo": 938},
+        {"rango": (120, 999), "variable": 0.0188, "fijo": 1072},
+    ],
+    "VxF": [{"rango": (85, 89.99), "variable": 0.0019, "fijo": 88},
+            {"rango": (90, 99.99), "variable": 0.0023, "fijo": 110},
+            {"rango": (100, 109.99), "variable": 0.0029, "fijo": 132},
+            {"rango": (110, 119.99), "variable": 0.0030, "fijo": 154},
+            {"rango": (120, 999), "variable": 0.0031, "fijo": 176}],
+    "AxF": [{"rango": (85, 89.99), "variable": 0.0019, "fijo": 88},
+            {"rango": (90, 99.99), "variable": 0.0023, "fijo": 110},
+            {"rango": (100, 109.99), "variable": 0.0029, "fijo": 132},
+            {"rango": (110, 119.99), "variable": 0.0030, "fijo": 154},
+            {"rango": (120, 999), "variable": 0.0031, "fijo": 176}],
+    "Fidelizacion": [{"rango": (85, 89.99), "variable": 0.0019, "fijo": 88},
+                     {"rango": (90, 99.99), "variable": 0.0023, "fijo": 110},
+                     {"rango": (100, 109.99), "variable": 0.0029, "fijo": 132},
+                     {"rango": (110, 119.99), "variable": 0.0030, "fijo": 154},
+                     {"rango": (120, 999), "variable": 0.0031, "fijo": 176}]
+}
 
-    st.markdown("---")
-    st.subheader("📊 Ingreso de Datos")
+# ASESORES - TIENDA B
+comisiones_asesores_B = {
+    "PPTO": [
+        {"rango": (85, 89.99), "variable": 0.0121, "fijo": 469},
+        {"rango": (90, 99.99), "variable": 0.0147, "fijo": 603},
+        {"rango": (100, 109.99), "variable": 0.0181, "fijo": 737},
+        {"rango": (110, 119.99), "variable": 0.0188, "fijo": 871},
+        {"rango": (120, 999), "variable": 0.0194, "fijo": 1005},
+    ],
+    "VxF": [{"rango": (85, 89.99), "variable": 0.0020, "fijo": 77},
+            {"rango": (90, 99.99), "variable": 0.0024, "fijo": 99},
+            {"rango": (100, 109.99), "variable": 0.0030, "fijo": 121},
+            {"rango": (110, 119.99), "variable": 0.0031, "fijo": 143},
+            {"rango": (120, 999), "variable": 0.0032, "fijo": 165}],
+    "AxF": [{"rango": (85, 89.99), "variable": 0.0020, "fijo": 77},
+            {"rango": (90, 99.99), "variable": 0.0024, "fijo": 99},
+            {"rango": (100, 109.99), "variable": 0.0030, "fijo": 121},
+            {"rango": (110, 119.99), "variable": 0.0031, "fijo": 143},
+            {"rango": (120, 999), "variable": 0.0032, "fijo": 165}],
+    "Fidelizacion": [{"rango": (85, 89.99), "variable": 0.0020, "fijo": 77},
+                     {"rango": (90, 99.99), "variable": 0.0024, "fijo": 99},
+                     {"rango": (100, 109.99), "variable": 0.0030, "fijo": 121},
+                     {"rango": (110, 119.99), "variable": 0.0031, "fijo": 143},
+                     {"rango": (120, 999), "variable": 0.0032, "fijo": 165}]
+}
 
-    venta_total = st.number_input("Venta total lograda (Q)", min_value=0.0, format="%.2f")
-    facturas_realizadas = st.number_input("Facturas realizadas", min_value=0)
 
-    col1, col2 = st.columns(2)
-    with col1:
-        meta_ppto = st.number_input("Meta de PPTO (Q)", min_value=0.0, format="%.2f")
-        meta_axf = st.number_input("Meta de AxF", min_value=0.0, format="%.2f")
-        meta_vxf = st.number_input("Meta de VxF (Q)", min_value=0.0, format="%.2f")
-        meta_fidelizados = facturas_realizadas
-    with col2:
-        logro_ppto = st.number_input("Logro de PPTO (Q)", min_value=0.0, format="%.2f")
-        logro_axf = st.number_input("Logro de AxF", min_value=0.0, format="%.2f")
-        logro_vxf = st.number_input("Logro de VxF (Q)", min_value=0.0, format="%.2f")
-        clientes_fidelizados = st.number_input("Clientes Fidelizados", min_value=0)
+# --- FUNCIÓN PARA CALCULAR COMISIÓN ---
+def calcular_comision(tabla, indicador, meta, logro, venta_total):
+    if meta == 0:
+        return 0, 0, 0  # evitar división por cero
+    porcentaje = (logro / meta) * 100
+    for tramo in tabla[indicador]:
+        min_r, max_r = tramo["rango"]
+        if min_r <= porcentaje <= max_r:
+            comision_variable = venta_total * tramo["variable"]
+            comision_final = max(comision_variable, tramo["fijo"])
+            return round(comision_variable, 2), tramo["fijo"], round(comision_final, 2)
+    return 0, 0, 0
 
-    if st.button("Calcular Comisión"):
-        def calcular_cumplimiento(meta, logro):
-            return (logro / meta) * 100 if meta > 0 else 0
+# --- INTERFAZ STREAMLIT ---
+st.title("💸 Simulador de Comisiones - Hurley & Nava")
 
-        cumplimiento = {
-            "PPTO": calcular_cumplimiento(meta_ppto, logro_ppto),
-            "AxF": calcular_cumplimiento(meta_axf, logro_axf),
-            "VxF": calcular_cumplimiento(meta_vxf, logro_vxf),
-            "Fidelización": calcular_cumplimiento(meta_fidelizados, clientes_fidelizados)
-        }
+cargo = st.selectbox("Cargo", ["Asesor", "Administrador"])
+tipo_tienda = st.selectbox("Tipo de tienda", ["Tipo A", "Tipo B"])
+venta = st.number_input("Venta total realizada (Q)", min_value=0.0)
 
-        st.markdown("---")
-        st.subheader("📈 Resultados de Cumplimiento")
-        for k, v in cumplimiento.items():
-            st.write(f"**{k}:** {v:.2f}%")
+st.subheader("Indicadores")
+cols = st.columns(4)
+indicadores = {}
+for i, indicador in enumerate(["PPTO", "VxF", "AxF", "Fidelizacion"]):
+    with cols[i]:
+        meta = st.number_input(f"Meta {indicador}", min_value=0.0, key=f"meta_{indicador}")
+        logro = st.number_input(f"Logrado {indicador}", min_value=0.0, key=f"logro_{indicador}")
+        indicadores[indicador] = (meta, logro)
 
-        # Tabla de comisiones por variable
-        tabla_variables = {
-            "Administrador": {
-                "A": {"PPTO": [0.01, 0.012, 0.015, 0.017, 0.02],
-                      "AxF": [0.01, 0.012, 0.015, 0.017, 0.02],
-                      "VxF": [0.01, 0.012, 0.015, 0.017, 0.02],
-                      "Fidelización": [0.01, 0.012, 0.015, 0.017, 0.02]},
-                "B": {"PPTO": [0.008, 0.01, 0.012, 0.014, 0.016],
-                      "AxF": [0.008, 0.01, 0.012, 0.014, 0.016],
-                      "VxF": [0.008, 0.01, 0.012, 0.014, 0.016],
-                      "Fidelización": [0.008, 0.01, 0.012, 0.014, 0.016]}
-            },
-            "Alterno": {
-                "A": {"PPTO": [0.006, 0.008, 0.01, 0.012, 0.014],
-                      "AxF": [0.006, 0.008, 0.01, 0.012, 0.014],
-                      "VxF": [0.006, 0.008, 0.01, 0.012, 0.014],
-                      "Fidelización": [0.006, 0.008, 0.01, 0.012, 0.014]},
-                "B": {"PPTO": [0.005, 0.007, 0.009, 0.011, 0.013],
-                      "AxF": [0.005, 0.007, 0.009, 0.011, 0.013],
-                      "VxF": [0.005, 0.007, 0.009, 0.011, 0.013],
-                      "Fidelización": [0.005, 0.007, 0.009, 0.011, 0.013]}
-            },
-            "Asesor": {
-                "A": {"PPTO": [0.005, 0.007, 0.009, 0.011, 0.013],
-                      "AxF": [0.005, 0.007, 0.009, 0.011, 0.013],
-                      "VxF": [0.005, 0.007, 0.009, 0.011, 0.013],
-                      "Fidelización": [0.005, 0.007, 0.009, 0.011, 0.013]},
-                "B": {"PPTO": [0.004, 0.006, 0.008, 0.01, 0.012],
-                      "AxF": [0.004, 0.006, 0.008, 0.01, 0.012],
-                      "VxF": [0.004, 0.006, 0.008, 0.01, 0.012],
-                      "Fidelización": [0.004, 0.006, 0.008, 0.01, 0.012]}
-            }
-        }
-
-        def rango_index(cumplimiento):
-            if cumplimiento >= 120:
-                return 4
-            elif cumplimiento >= 110:
-                return 3
-            elif cumplimiento >= 100:
-                return 2
-            elif cumplimiento >= 90:
-                return 1
-            elif cumplimiento >= 85:
-                return 0
-            else:
-                return -1
-
-        comisiones = {}
-        for indicador, porc in cumplimiento.items():
-            idx = rango_index(porc)
-            if idx >= 0:
-                porcentaje_variable = tabla_variables[cargo][tipo_tienda][indicador][idx]
-                comisiones[indicador] = venta_total * porcentaje_variable
-            else:
-                comisiones[indicador] = 0.0
-
-        st.markdown("---")
-        st.subheader("🧾 Comisión por Indicador")
-        total = 0
-        for ind, valor in comisiones.items():
-            st.write(f"✅ **{ind}**: Q{valor:.2f}")
-            total += valor
-
-        st.markdown("---")
-        st.markdown(f"<h2 style='color:green; text-align:center;'>💰 Comisión Total: Q{total:.2f}</h2>", unsafe_allow_html=True)
+# --- SELECCIÓN DE TABLA DE COMISIONES ---
+if cargo == "Asesor" and tipo_tienda == "Tipo A":
+    tabla = comisiones_asesores_A
+elif cargo == "Asesor" and tipo_tienda == "Tipo B":
+    tabla = comisiones_asesores_B
+elif cargo == "Administrador" and tipo_tienda == "Tipo A":
+    tabla = comisiones_admins_A
+elif cargo == "Administrador" and tipo_tienda == "Tipo B":
+    tabla = comisiones_admins_B
 else:
-    st.warning("Por favor, completa todos los campos iniciales.")
+    st.error("No hay tabla definida para esta combinación.")
+    st.stop()
+
+# --- CÁLCULO ---
+if st.button("Calcular Comisión"):
+    total = 0
+    st.subheader("Detalle por Indicador")
+    for indicador, (meta, logro) in indicadores.items():
+        com_var, com_fijo, com_final = calcular_comision(tabla, indicador, meta, logro, venta)
+        total += com_final
+        st.write(f"**{indicador}** ➤ Comisión Variable: Q{com_var} | Fijo: Q{com_fijo} | **Aplica: Q{com_final}**")
+
+    st.success(f"💰 Comisión Total Estimada: Q{round(total, 2)}")
