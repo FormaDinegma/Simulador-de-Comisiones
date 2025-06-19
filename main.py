@@ -171,7 +171,7 @@ else:
     st.error("No hay tabla definida para esta combinación.")
     st.stop()
     
-st.write("🔎 Tabla usada:", tabla)
+st.write("Tabla usada:", tabla)
 # --- CÁLCULO ---
 if st.button("Calcular Comisión"):
     total = 0
