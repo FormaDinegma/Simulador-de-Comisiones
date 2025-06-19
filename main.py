@@ -172,6 +172,7 @@ else:
     st.stop()
     
 st.write("Tabla usada:", tabla)
+
 # --- CÁLCULO ---
 if st.button("Calcular Comisión"):
     total = 0
