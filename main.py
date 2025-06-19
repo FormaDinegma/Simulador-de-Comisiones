@@ -133,15 +133,32 @@ comisiones_asesores_B = {
 # --- FUNCIÓN PARA CALCULAR COMISIÓN ---
 def calcular_comision(tabla, indicador, meta, logro, venta_total):
     if meta == 0:
+        st.warning(f"⚠️ Meta para {indicador} es 0. No se puede calcular.")
         return 0, 0, 0
+
     porcentaje = (logro / meta) * 100
+    tramo_encontrado = None
+
     for tramo in tabla[indicador]:
         min_r, max_r = tramo["rango"]
         if min_r <= porcentaje <= max_r:
-            comision_variable = venta_total * tramo["variable"]
-            comision_final = max(comision_variable, tramo["fijo"])
-            return round(comision_variable, 2), tramo["fijo"], round(comision_final, 2)
-    return 0, 0, 0
+            tramo_encontrado = tramo
+            break
+
+    if tramo_encontrado:
+        comision_variable = venta_total * tramo_encontrado["variable"]
+        comision_final = max(comision_variable, tramo_encontrado["fijo"])
+
+        st.info(f"\n📊 Indicador: {indicador}\n"
+                f"- % Cumplimiento: {round(porcentaje, 2)}%\n"
+                f"- Comisión Variable: Q{round(comision_variable, 2)}\n"
+                f"- Comisión Fija: Q{tramo_encontrado['fijo']}\n"
+                f"✅ Comisión Aplicada: Q{round(comision_final, 2)}")
+
+        return round(comision_variable, 2), tramo_encontrado["fijo"], round(comision_final, 2)
+    else:
+        st.warning(f"⚠️ No se encontró un tramo para el indicador {indicador} con {round(porcentaje, 2)}%")
+        return 0, 0, 0
 
 # --- INTERFAZ STREAMLIT ---
 st.title("💸 Simulador de Comisiones - Hurley & Nava")
