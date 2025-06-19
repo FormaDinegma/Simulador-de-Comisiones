@@ -171,10 +171,12 @@ else:
     st.error("No hay tabla definida para esta combinación.")
     st.stop()
     
-st.write("Tabla usada:", tabla)
-
 # --- CÁLCULO ---
 if st.button("Calcular Comisión"):
+    st.write("🔍 Cargo seleccionado:", cargo)
+    st.write("🏬 Tipo tienda seleccionada:", tipo_tienda)
+    st.write("📦 Tabla usada:", tabla)
+
     total = 0
     st.subheader("Detalle por Indicador")
     for indicador, (meta, logro) in indicadores.items():
