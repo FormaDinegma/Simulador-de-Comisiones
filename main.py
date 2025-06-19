@@ -173,15 +173,18 @@ else:
     
 # --- CÁLCULO ---
 if st.button("Calcular Comisión"):
-    st.write("🔍 Cargo seleccionado:", cargo)
-    st.write("🏬 Tipo tienda seleccionada:", tipo_tienda)
-    st.write("📦 Tabla usada:", tabla)
+    st.subheader("🔎 Verificación de parámetros seleccionados")
+    st.markdown(f"- **Cargo seleccionado:** {cargo}")
+    st.markdown(f"- **Tipo de tienda:** {tipo_tienda}")
+    st.markdown(f"- **Tabla aplicada:** `{tabla}`")
 
+    st.subheader("📋 Comisión por Indicador")
     total = 0
-    st.subheader("Detalle por Indicador")
     for indicador, (meta, logro) in indicadores.items():
         com_var, com_fijo, com_final = calcular_comision(tabla, indicador, meta, logro, venta)
         total += com_final
-        st.write(f"**{indicador}** ➤ Comisión Variable: Q{com_var} | Fijo: Q{com_fijo} | **Aplica: Q{com_final}**")
+        st.success(f"{indicador}: Q{com_final}")
 
-    st.success(f"💰 Comisión Total Estimada: Q{round(total, 2)}")
+    st.markdown("---")
+    st.success(f"💰 **Comisión Total: Q{round(total, 2)}**")
+
