@@ -129,10 +129,11 @@ comisiones_asesores_B = {
         {"rango": (120, 999), "variable": 0.0032, "fijo": 165},
     ],
 }
+
 # --- FUNCIÓN PARA CALCULAR COMISIÓN ---
 def calcular_comision(tabla, indicador, meta, logro, venta_total):
     if meta == 0:
-        return 0, 0, 0  # evitar división por cero
+        return 0, 0, 0
     porcentaje = (logro / meta) * 100
     for tramo in tabla[indicador]:
         min_r, max_r = tramo["rango"]
@@ -170,13 +171,14 @@ elif cargo == "Administrador" and tipo_tienda == "Tipo B":
 else:
     st.error("No hay tabla definida para esta combinación.")
     st.stop()
-    
+
 # --- CÁLCULO ---
 if st.button("Calcular Comisión"):
     st.subheader("🔎 Verificación de parámetros seleccionados")
     st.markdown(f"- **Cargo seleccionado:** {cargo}")
     st.markdown(f"- **Tipo de tienda:** {tipo_tienda}")
-    st.markdown(f"- **Tabla aplicada:** `{tabla}`")
+    st.markdown("- **Ejemplo de variable de tabla:**")
+    st.json(tabla["PPTO"][0])  # Mostrar el primer tramo para verificar tabla
 
     st.subheader("📋 Comisión por Indicador")
     total = 0
@@ -187,4 +189,3 @@ if st.button("Calcular Comisión"):
 
     st.markdown("---")
     st.success(f"💰 **Comisión Total: Q{round(total, 2)}**")
-
