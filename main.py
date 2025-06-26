@@ -161,7 +161,7 @@ def calcular_comision(tabla, indicador, meta, logro, venta_total):
         return 0, 0, 0
 
 # --- INTERFAZ STREAMLIT ---
-st.title("💸 Simulador de Comisiones")
+st.markdown("<h1 style='font-size: 40px;'>📊 Simulador de Comisiones <b style='color:#3ECF8E'>2025</b></h1>", unsafe_allow_html=True)
 
 cargo = st.selectbox("Cargo", ["Asesor", "Administrador"])
 tipo_tienda = st.selectbox("Tipo de tienda", ["Tipo A", "Tipo B"])
