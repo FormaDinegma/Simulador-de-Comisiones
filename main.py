@@ -161,7 +161,7 @@ def calcular_comision(tabla, indicador, meta, logro, venta_total):
         return 0, 0, 0
 
 # --- INTERFAZ STREAMLIT ---
-st.title("💸 Simulador de Comisiones - Hurley & Nava")
+st.title("💸 Simulador de Comisiones")
 
 cargo = st.selectbox("Cargo", ["Asesor", "Administrador"])
 tipo_tienda = st.selectbox("Tipo de tienda", ["Tipo A", "Tipo B"])
